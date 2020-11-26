@@ -3,20 +3,13 @@
   "cpus": {{service.cpus}},
   "mem": {{service.mem}},
   "instances": 1,
-  "env": {
-    {{#jena.password}}
-      "ADMIN_PASSWORD": "{{jena.password}}"
-    {{/jena.password}}
-    {{^jena.password}}
-    {{/jena.password}}
-  },
   "container": {
        "type": "DOCKER",
        "docker": {
            "image": "{{resource.assets.container.docker.image}}",
            "network": "BRIDGE",
            "portMappings": [
-              { "containerPort": 3030, "hostPort": 0 }
+              { "containerPort": 10000, "hostPort": 0 }
           ]
        }
    },

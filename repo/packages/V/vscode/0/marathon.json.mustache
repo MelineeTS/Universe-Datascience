@@ -3,44 +3,24 @@
   "cpus": {{service.cpus}},
   "mem": {{service.mem}},
   "instances": 1,
-  "cmd": "dumb-init bash /mnt/mesos/sandbox/onyxia-init.sh fixuid -q /usr/bin/code-server --host 0.0.0.0 .",
+  "cmd": "dumb-init bash /mnt/mesos/sandbox/onyxia-init.sh fixuid -q /usr/local/bin/code-server --host 0.0.0.0 .",
   "env": {
-    "AWS_ACCESS_KEY_ID": "{{s3.accessKeyId}}",
-    "AWS_SECRET_ACCESS_KEY": "{{s3.secretAccessKey}}",
-    "AWS_SESSION_TOKEN": "{{s3.sessionToken}}",
-    "AWS_DEFAULT_REGION": "{{s3.defaultRegion}}",
-    "AWS_S3_ENDPOINT": "{{s3.endpoint}}",
-    "AWS_BUCKET_NAME": "{{s3.bucketName}}",
-    "AWS_EXPIRATION": "{{s3.expiration}}",
     "GIT_USER_NAME": "{{git.name}}",
-    "GIT_USER_MAIL": "{{git.email}}",
+    "GIT_USER_MAIL": "{{git.email}}",   
     "GIT_CREDENTIALS_CACHE_DURATION": "{{git.cache}}",
-    "VAULT_ADDR": "{{vault.url}}",
-    "VAULT_TOKEN": "{{vault.token}}",
-    {{#vault.secret}}
-    "VAULT_RELATIVE_PATH": "{{vault.secret}}",
-    {{/vault.secret}}    
-    "VAULT_TOP_DIR": "{{vault.directory}}",
-    "VAULT_MOUNT": "{{vault.mount}}",
     "PASSWORD": "{{vscode.password}}",
     "PORT":"8080"
   },
   "container": {
-       "type": "DOCKER",           
-       "portMappings": [
-              { "containerPort": 8080, "name": "vscode" }
-          ],
+       "type": "DOCKER",
        "docker": {
            "image": "{{vscode.image}}",
-            "forcePullImage": true
+           "network": "BRIDGE",
+           "portMappings": [
+              { "containerPort": 8080, "hostPort": 0 }
+          ]
        }
    },
-   "networks": [
-      {
-        "name": "{{networking.network-name}}",
-        "mode": "container"
-      }
-    ],
    "healthChecks": [
     {
       "path": "/",
@@ -67,22 +47,12 @@
   },
   "fetch": [
       {
-        "uri": "{{init.global}}",
+        "uri": "https://git.lab.sspcloud.fr/innovation/plateforme-onyxia/services-ressources/-/raw/master/onyxia-init.sh",
         "extract": false,
         "executable": true,
         "cache": false,
         "destPath": "onyxia-init.sh"
-      }        
-      {{#script.uri}}
-        ,
-        {
-        "uri": "{{script.uri}}",
-        "extract": false,
-        "executable": true,
-        "cache": false,
-        "destPath": "init-user.sh"
-    }
-    {{/script.uri}}
+      }
   ],
   "upgradeStrategy":{
     "minimumHealthCapacity": 0,

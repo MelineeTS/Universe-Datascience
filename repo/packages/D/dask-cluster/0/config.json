@@ -109,7 +109,7 @@
                 "minimum": 1
               },
               "memory_limit": {
-                "description": "Value of parameter --memory-limit",
+                "description": "value of --memory-limit parameter",
                 "title": "Memory limit",
                 "type": "string",
                 "default": "0"
@@ -140,95 +140,10 @@
           }
         }
       },
-      "init": {
-        "description": "Init parameters",
-        "type": "object",
-        "properties": {
-          "global": {
-            "type": "string",
-            "description": "initialization script",
-            "default": "",
-            "x-form": {
-              "hidden": true
-            },
-            "x-generated": {
-              "type": "initScript",
-              "scope": "vscode"
-            }
-          }
-        }
-      },
-      "s3": {
-        "description": "Configuration of temporary identity",
-        "type": "object",
-        "properties": {
-          "accessKeyId": {
-            "description": "AWS Access Key",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_ACCESS_KEY_ID}}"
-            }
-          },
-          "endpoint": {
-            "description": "AWS S3 Endpoint",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_S3_ENDPOINT}}"
-            }
-          },
-          "defaultRegion": {
-            "description": "AWS S3 default region",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_DEFAULT_REGION}}"
-            }
-          },
-          "secretAccessKey": {
-            "description": "AWS S3 secret access key",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_SECRET_ACCESS_KEY}}"
-            }
-          },
-          "sessionToken": {
-            "description": "AWS S3 session Token",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_SESSION_TOKEN}}"
-            }
-          },
-          "bucketName": {
-            "description": "AWS S3 bucket name",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_BUCKET_NAME}}"
-            }
-          },
-          "expiration": {
-            "description": "Temporary identity expiration date",
-            "type": "string",
-            "x-form": {
-              "value": "{{s3.AWS_EXPIRATION}}"
-            }
-          }
-        }
-      },
       "networking": {
         "description": "Networking-related configuration properties for elk on DC/OS.",
         "type": "object",
-        "properties": {        
-          "network-name": {
-            "description": "Name of the container network to use",
-            "type": "string",
-            "default": "dcos",
-            "x-form": {
-              "hidden": true
-            },
-            "x-generated": {
-              "type": "containerNetworkName",
-              "scope": "blazingsql"
-            }
-          },
+        "properties": {
           "virtual-host": {
             "description": "The virtual host address to configure for integration with Marathon-lb.",
             "type": "string",

@@ -1,0 +1,15 @@
+{
+    "images": {
+      "icon-small": "https://media.glassdoor.com/sqll/1037713/dataiku-squarelogo-1481134536427.png",
+      "icon-medium": "https://media.glassdoor.com/sqll/1037713/dataiku-squarelogo-1481134536427.png",
+      "icon-large": "https://media.glassdoor.com/sqll/1037713/dataiku-squarelogo-1481134536427.png"
+    },
+    "assets": {
+      "container": {
+        "docker": {
+          "image": "dataiku/dss"
+        }
+      }
+    }
+  }
+  

@@ -2,29 +2,29 @@
     "type": "object",
     "properties": {
       "service": {
-        "description": "Configuration properties for the jena service for DC/OS.",
+        "description": "Configuration properties for the ubuntu service for DC/OS.",
         "type": "object",
         "properties": {
           "name": {
             "description": "The name of the service to display in the DC/OS dashboard.",
             "type": "string",
-            "default": "jena",
+            "default": "ubuntu",
             "x-form": {
               "hidden": true
             },
             "x-generated": {
               "type": "appID",
-              "scope": "jena"
+              "scope": "icarius"
             }
           },
           "cpus": {
-            "description": "CPU shares to allocate to this jena instance.",
+            "description": "CPU shares to allocate to this ubuntu instance.",
             "type": "number",
-            "default": 0.1,
+            "default": 0.5,
             "minimum": 0.1
           },
           "mem": {
-            "description": "Memory (in MB) to allocate to this jena instance.",
+            "description": "Memory (in MB) to allocate to this ubuntu instance.",
             "type": "number",
             "default": 2048,
             "minimum": 256
@@ -32,13 +32,13 @@
         },
         "required": ["name", "cpus", "mem"]
       },
-      "jena": {
-        "description": "jena specific configuration",
+      "ubuntu": {
+        "description": "ubuntu specific configuration",
         "type": "object",
         "properties": {
           "password": {
             "type": "string",
-            "description": "Password of the admin account",
+            "description": "Password",
             "default": "changeme",
             "x-form": {
               "value": "{{user.password}}"
@@ -47,7 +47,7 @@
         }
       },
       "networking": {
-        "description": "Networking-related configuration properties for jena on DC/OS.",
+        "description": "Networking-related configuration properties for ubuntu on DC/OS.",
         "type": "object",
         "properties": {
           "virtual-host": {
@@ -58,7 +58,7 @@
             },
             "x-generated": {
               "type": "externalDNS",
-              "scope": "jena",
+              "scope": "icarius",
               "name": "ihm"
             }
           },
@@ -94,6 +94,6 @@
         "required": ["virtual-host", "https-redirect"]
       }
     },
-    "required": ["service", "jena", "networking"]
+    "required": ["service", "ubuntu", "networking"]
   }
   

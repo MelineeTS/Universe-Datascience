@@ -7,11 +7,11 @@
       "cpus": {{master.cpus}},
       "mem":  {{master.mem}},
       "instances": 1,
-      "cmd": "bash /mnt/mesos/sandbox/onyxia-init.sh /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master",
+      "cmd": " /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master",
       "networks": [
           {
           "mode": "container",
-          "name": "{{networking.network-name}}"
+          "name": "dcos"
           }
       ], 
       "container": {
@@ -21,8 +21,7 @@
               { "protocol": "tcp", "hostPort": 0, "containerPort": 7077 }
           ],
           "docker": {
-              "image": "{{service.image}}",
-            "forcePullImage": true
+              "image": "{{resource.assets.container.docker.spark}}"
           }
       },
       "healthChecks": [
@@ -34,16 +33,6 @@
           "timeoutSeconds": 20,
           "maxConsecutiveFailures": 3
         }
-      ],
-      "fetch": [
-        {
-          "uri": "{{init.global}}",
-          "extract": false,
-          "executable": true,
-          "cache": false,
-          "destPath": "onyxia-init.sh"
-        }
-      
       ],
       "labels": {
         "HAPROXY_GROUP":"external",
@@ -68,7 +57,7 @@
       "cpus": {{worker.cpus}},
       "mem":  {{worker.mem}},
       "instances": {{worker.instances}},
-      "cmd": "bash /mnt/mesos/sandbox/onyxia-init.sh  /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker {{master.endpoint}}:7077",
+      "cmd": "/opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker {{master.endpoint}}:7077",
       "networks": [
           {
           "mode": "container",
@@ -81,8 +70,7 @@
               { "protocol": "tcp", "hostPort": 0, "containerPort": 8081 }
           ],
           "docker": {
-              "image": "{{service.image}}",
-            "forcePullImage": true
+              "image": "{{resource.assets.container.docker.spark}}"
           }
       },
       "healthChecks": [
@@ -94,21 +82,7 @@
           "timeoutSeconds": 20,
           "maxConsecutiveFailures": 3
         }
-      ],
-      "fetch": [
-        {
-          "uri": "{{init.global}}",
-          "extract": false,
-          "executable": true,
-          "cache": false,
-          "destPath": "onyxia-init.sh"
-        }
-      
-      ],
-      "env": {
-        "SPARK_WORKER_CORES" : "{{worker.worker-cores}}",
-        "SPARK_WORKER_MEMORY" : "{{worker.worker-memory}}"
-      }
+      ]
     }
   ]
 }

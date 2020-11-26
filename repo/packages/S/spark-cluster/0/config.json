@@ -27,16 +27,7 @@
               "type": "appID",
               "scope": "master"
             }
-          },
-          "image": {
-            "type": "string",
-            "description": "Version of spark to use",
-            "default": "inseefrlab/jupyter-datascience:v3.0.0-3.2.1",
-            "enum": [
-              "inseefrlab/jupyter-datascience:v2.4.6-3.2.1",
-              "inseefrlab/jupyter-datascience:v3.0.0-3.2.1"
-            ]
-          }
+          }     
         },
         "required": ["name"]
       },
@@ -102,55 +93,13 @@
                 "type": "number",
                 "default": 2048,
                 "minimum": 2048
-              },
-              "worker-cores":{
-                "description": "Total number of cores to allow Spark applications to use. Value of SPARK_WORKER_CORES.",
-                "type": "number",
-                "default": 2,
-                "minimum": 1
-              },
-              "worker-memory":{
-                "description": "Total amount of memory to allow Spark applications to use on the machine. Value of SPARK_WORKER_MEMORY.",
-                "type": "string",
-                "default": "1g"
-                
               }
           }
-      },
-      "init": {
-        "description": "Init parameters",
-        "type": "object",
-        "properties": {
-          "global": {
-            "type": "string",
-            "description": "initialization script",
-            "default": "",
-            "x-form": {
-              "hidden": true
-            },
-            "x-generated": {
-              "type": "initScript",
-              "scope": "spark-cluster"
-            }
-          }
-        }
       },
       "networking": {
         "description": "Networking-related configuration properties for elk on DC/OS.",
         "type": "object",
         "properties": {
-          "network-name": {
-            "description": "Name of the container network to use",
-            "type": "string",
-            "default": "dcos",
-            "x-form": {
-              "hidden": true
-            },
-            "x-generated": {
-              "type": "containerNetworkName",
-              "scope": "spark-cluster"
-            }
-          },
           "virtual-host": {
             "description": "The virtual host address to configure for integration with Marathon-lb.",
             "type": "string",

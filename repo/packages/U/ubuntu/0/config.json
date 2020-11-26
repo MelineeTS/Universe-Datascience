@@ -90,45 +90,6 @@
             }
           }
         },
-        "vault": {
-          "description": "Configuration of vault client",
-          "type": "object",
-          "properties": {
-            "token": {
-              "description": "token vault",
-              "type": "string",
-              "x-form": {
-                "value": "{{vault.VAULT_TOKEN}}"
-              }
-            },
-            "url": {
-              "description": "url of vault server",
-              "type": "string",
-              "x-form": {
-                "value": "{{vault.VAULT_ADDR}}"
-              }
-            },
-            "mount": {
-              "description": "mount of the v2 secret engine",
-              "type": "string",
-              "x-form": {
-                "value": "{{vault.VAULT_MOUNT}}"
-              }
-            },
-            "directory": {
-              "description": "top level directory",
-              "type": "string",
-              "x-form": {
-                "value": "{{vault.VAULT_TOP_DIR}}"
-              }
-            },
-            "secret": {
-              "description": "the path of the secret to convert into a list of environment variables",
-              "type": "string",
-              "default": ""
-            }
-          }
-      },
         "s3": {
           "description": "Configuration of temporary identity",
           "type": "object",
@@ -168,13 +129,6 @@
                 "value": "{{s3.AWS_SESSION_TOKEN}}"
               }
             },
-            "bucketName": {
-              "description": "AWS S3 bucket name",
-              "type": "string",
-              "x-form": {
-                "value": "{{s3.AWS_BUCKET_NAME}}"
-              }
-            },
             "expiration": {
               "description": "Temporary identity expiration date",
               "type": "string",
@@ -184,40 +138,10 @@
             }
           }
       },
-      "init": {
-        "description": "Init parameters",
-        "type": "object",
-        "properties": {
-          "global": {
-            "type": "string",
-            "description": "initialization script",
-            "default": "",
-            "x-form": {
-              "hidden": true
-            },
-            "x-generated": {
-              "type": "initScript",
-              "scope": "vscode"
-            }
-          }
-        }
-      },
       "networking": {
         "description": "Networking-related configuration properties for ubuntu on DC/OS.",
         "type": "object",
         "properties": {
-          "network-name": {
-            "description": "Name of the container network to use",
-            "type": "string",
-            "default": "dcos",
-            "x-form": {
-              "hidden": true
-            },
-            "x-generated": {
-              "type": "containerNetworkName",
-              "scope": "ubuntu"
-            }
-          },
           "virtual-host": {
             "description": "The virtual host address to configure for integration with Marathon-lb.",
             "type": "string",

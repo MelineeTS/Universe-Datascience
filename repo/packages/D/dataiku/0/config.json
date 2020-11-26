@@ -2,29 +2,29 @@
     "type": "object",
     "properties": {
       "service": {
-        "description": "Configuration properties for the jena service for DC/OS.",
+        "description": "Configuration properties for the Dataiku service for DC/OS.",
         "type": "object",
         "properties": {
           "name": {
             "description": "The name of the service to display in the DC/OS dashboard.",
             "type": "string",
-            "default": "jena",
+            "default": "dataiku",
             "x-form": {
               "hidden": true
             },
             "x-generated": {
               "type": "appID",
-              "scope": "jena"
+              "scope": "dataiku"
             }
           },
           "cpus": {
-            "description": "CPU shares to allocate to this jena instance.",
+            "description": "CPU shares to allocate to this dataiku instance.",
             "type": "number",
             "default": 0.1,
             "minimum": 0.1
           },
           "mem": {
-            "description": "Memory (in MB) to allocate to this jena instance.",
+            "description": "Memory (in MB) to allocate to this dataiku instance.",
             "type": "number",
             "default": 2048,
             "minimum": 256
@@ -32,22 +32,8 @@
         },
         "required": ["name", "cpus", "mem"]
       },
-      "jena": {
-        "description": "jena specific configuration",
-        "type": "object",
-        "properties": {
-          "password": {
-            "type": "string",
-            "description": "Password of the admin account",
-            "default": "changeme",
-            "x-form": {
-              "value": "{{user.password}}"
-            }
-          }
-        }
-      },
       "networking": {
-        "description": "Networking-related configuration properties for jena on DC/OS.",
+        "description": "Networking-related configuration properties for dataiku on DC/OS.",
         "type": "object",
         "properties": {
           "virtual-host": {
@@ -58,7 +44,7 @@
             },
             "x-generated": {
               "type": "externalDNS",
-              "scope": "jena",
+              "scope": "dataiku",
               "name": "ihm"
             }
           },
@@ -94,6 +80,6 @@
         "required": ["virtual-host", "https-redirect"]
       }
     },
-    "required": ["service", "jena", "networking"]
+    "required": ["service", "networking"]
   }
   

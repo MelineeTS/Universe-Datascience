@@ -48,14 +48,13 @@
         "image": {
             "type": "string",
             "description": "Version of vscode to use",
-            "default": "inseefrlab/jupyter-datascience:v3.0.0-3.2.1",
+            "default": "inseefrlab/jupyter-datascience",
             "enum": [
               "jupyter/datascience-notebook", 
               "jupyter/all-spark-notebook", 
               "jupyter/tensorflow-notebook",
               "daskdev/dask-notebook",
-              "inseefrlab/jupyter-datascience:v2.4.6-3.2.1",
-              "inseefrlab/jupyter-datascience:v3.0.0-3.2.1"
+              "inseefrlab/jupyter-datascience"
             ]
         },
         "spark-ui": {
@@ -77,40 +76,10 @@
         }
       }
     },
-    "init": {
-      "description": "Init parameters",
-      "type": "object",
-      "properties": {
-        "global": {
-          "type": "string",
-          "description": "initialization script",
-          "default": "",
-          "x-form": {
-            "hidden": true
-          },
-          "x-generated": {
-            "type": "initScript",
-            "scope": "vscode"
-          }
-        }
-      }
-    },
     "networking": {
       "description": "Networking-related configuration properties for jupyter on DC/OS.",
       "type": "object",
       "properties": {
-        "network-name": {
-          "description": "Name of the container network to use",
-          "type": "string",
-          "default": "dcos",
-          "x-form": {
-            "hidden": true
-          },
-          "x-generated": {
-            "type": "containerNetworkName",
-            "scope": "jupyter"
-          }
-        },
         "virtual-host": {
           "description": "The virtual host address to configure for integration with Marathon-lb for port 0.",
           "type": "string",
@@ -133,17 +102,6 @@
             "type": "externalDNS",
             "scope": "jupyter",
             "name": "spark-ui"
-          }
-        },
-        "internal-host": {
-          "description": "The internal dns name",
-          "type": "string",
-          "x-form": {
-            "hidden": true
-          },
-          "x-generated": {
-            "type": "internalDNS",
-            "scope": "jupyter"
           }
         },
         "https-redirect": {
@@ -207,45 +165,6 @@
         }
       }
     },
-    "vault": {
-      "description": "Configuration of vault client",
-      "type": "object",
-      "properties": {
-        "token": {
-          "description": "token vault",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_TOKEN}}"
-          }
-        },
-        "url": {
-          "description": "url of vault server",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_ADDR}}"
-          }
-        },
-        "mount": {
-          "description": "mount of the v2 secret engine",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_MOUNT}}"
-          }
-        },
-        "directory": {
-          "description": "top level directory",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_TOP_DIR}}"
-          }
-        },
-        "secret": {
-          "description": "the path of the secret to convert into a list of environment variables",
-          "type": "string",
-          "default": ""
-        }
-      }
-    },
     "s3": {
       "description": "Configuration of temporary identity",
       "type": "object",
@@ -283,13 +202,6 @@
           "type": "string",
           "x-form": {
             "value": "{{s3.AWS_SESSION_TOKEN}}"
-          }
-        },
-        "bucketName": {
-          "description": "AWS S3 bucket name",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_BUCKET_NAME}}"
           }
         },
         "expiration": {

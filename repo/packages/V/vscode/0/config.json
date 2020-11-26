@@ -56,18 +56,6 @@
       "description": "Networking-related configuration",
       "type": "string",
       "properties": {
-        "network-name": {
-          "description": "Name of the container network to use",
-          "type": "string",
-          "default": "dcos",
-          "x-form": {
-            "hidden": true
-          },
-          "x-generated": {
-            "type": "containerNetworkName",
-            "scope": "vscode"
-          }
-        },
         "virtual-host": {
           "type": "string",
           "description": "Virtual host to expose VSCode on",
@@ -88,10 +76,7 @@
               "type": "boolean",
               "title": "Enable IP protection",
               "description": "Only the configured set of IPs will be able to reach the service",
-              "default": true,
-              "x-form": {
-                "value": "{{region.ipProtection}}"
-              }
+              "default": true
             },
             "ip": {
               "type": "string",
@@ -138,130 +123,7 @@
           }
         }
       }
-    },
-    "vault": {
-      "description": "Configuration of vault client",
-      "type": "object",
-      "properties": {
-        "token": {
-          "description": "token vault",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_TOKEN}}"
-          }
-        },
-        "url": {
-          "description": "url of vault server",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_ADDR}}"
-          }
-        },
-        "mount": {
-          "description": "mount of the v2 secret engine",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_MOUNT}}"
-          }
-        },
-        "directory": {
-          "description": "top level directory",
-          "type": "string",
-          "x-form": {
-            "value": "{{vault.VAULT_TOP_DIR}}"
-          }
-        },
-        "secret": {
-          "description": "the path of the secret to convert into a list of environment variables",
-          "type": "string",
-          "default": ""
-        }
-      }
-  },
-    "s3": {
-      "description": "Configuration of temporary identity",
-      "type": "object",
-      "properties": {
-        "accessKeyId": {
-          "description": "AWS Access Key",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_ACCESS_KEY_ID}}"
-          }
-        },
-        "endpoint": {
-          "description": "AWS S3 Endpoint",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_S3_ENDPOINT}}"
-          }
-        },
-        "defaultRegion": {
-          "description": "AWS S3 default region",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_DEFAULT_REGION}}"
-          }
-        },
-        "secretAccessKey": {
-          "description": "AWS S3 secret access key",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_SECRET_ACCESS_KEY}}"
-          }
-        },
-        "sessionToken": {
-          "description": "AWS S3 session Token",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_SESSION_TOKEN}}"
-          }
-        },
-        "bucketName": {
-          "description": "AWS S3 bucket name",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_BUCKET_NAME}}"
-          }
-        },
-        "expiration": {
-          "description": "Temporary identity expiration date",
-          "type": "string",
-          "x-form": {
-            "value": "{{s3.AWS_EXPIRATION}}"
-          }
-        }
-      }
-  },
-  "script": {
-    "type": "object",
-    "description": "scripts",
-    "properties": {
-      "uri": {
-        "type": "string",
-        "description": "uri of a .sh file that will be executed at runtime",
-        "default": ""
-      }
     }
-  },
-    "init": {
-      "description": "Init parameters",
-      "type": "object",
-      "properties": {
-        "global": {
-          "type": "string",
-          "description": "initialization script",
-          "default": "",
-          "x-form": {
-            "hidden": true
-          },
-          "x-generated": {
-            "type": "initScript",
-            "scope": "vscode"
-          }
-        }
-      }
-    }   
   },
   "required": ["service", "vscode", "git"]
 }
